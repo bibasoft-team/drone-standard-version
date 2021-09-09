@@ -1,0 +1,30 @@
+name: Docker
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: bibasoft/drone-standard-version
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.REGISTRY_USER}}
+          password: ${{secrets.REGISTRY_TOKEN}}
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: .
+          tags: ${{env.IMAGE_NAME}}
