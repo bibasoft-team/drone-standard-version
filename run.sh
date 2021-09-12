@@ -11,8 +11,6 @@ params=()
 [[ $PLUGIN_DRY_RUN == true ]] && params+=(--dry-run)
 [[ -n "${PLUGIN_TAG_PREFIX}" ]] && params+=(--tag-prefix=${PLUGIN_TAG_PREFIX})
 
-bump, changelog, commit, tag
-
 
 [[ $PLUGIN_SKIP_BUMP == true ]] && params+=(--skip.bump)
 [[ $PLUGIN_SKIP_CHANGELOG == true ]] && params+=(--skip.changelog)
